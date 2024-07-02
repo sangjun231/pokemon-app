@@ -7,7 +7,11 @@ type PokemonDetailPageProps = {
 };
 
 const PokemonDetailPage = ({ params }: PokemonDetailPageProps) => {
-  return <PokemonDetail id={params.id} />;
+  return (
+    <div>
+      <PokemonDetail id={params.id} />
+    </div>
+  );
 };
 
 export default PokemonDetailPage;

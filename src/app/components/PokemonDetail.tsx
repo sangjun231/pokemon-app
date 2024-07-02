@@ -1,13 +1,14 @@
-"use client";
-
-import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { getPokemon } from "@/app/services/pokemonService";
 import Link from "next/link";
 
-type Type = { type: { name: string; korean_name: string } };
+type Type = {
+  type: { name: string; korean_name: string };
+};
 
-type Ability = { ability: { name: string; korean_name: string } };
+type Ability = {
+  ability: { name: string; korean_name: string };
+};
 
 type Move = {
   move: { name: string; korean_name: string };
@@ -25,18 +26,12 @@ type Pokemon = {
   moves: Move[];
 };
 
-const PokemonDetail = ({ id }: { id: string }) => {
-  const {
-    data: pokemon,
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: ["pokemon", id],
-    queryFn: () => getPokemon(id),
-  });
+type PokemonDetailProps = {
+  id: string;
+};
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error fetching data</div>;
+const PokemonDetail = async ({ id }: PokemonDetailProps) => {
+  const pokemon: Pokemon = await getPokemon(id);
 
   return (
     <div className="container mx-auto p-4">

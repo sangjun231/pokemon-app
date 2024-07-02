@@ -6,6 +6,6 @@ export const getPokemons = async () => {
 };
 
 export const getPokemon = async (id: string) => {
-  const response = await axios.get(`/api/pokemons/${id}`);
+  const response = await axios.get(`http://localhost:3000/api/pokemons/${id}`);
   return response.data;
 };
