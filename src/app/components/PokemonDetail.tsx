@@ -1,6 +1,7 @@
 import React from "react";
 import { getPokemon } from "@/app/services/pokemonService";
 import Link from "next/link";
+import Image from "next/image";
 
 type Type = {
   type: { name: string; korean_name: string };
@@ -26,19 +27,16 @@ type Pokemon = {
   moves: Move[];
 };
 
-type PokemonDetailProps = {
-  id: string;
-};
-
-const PokemonDetail = async ({ id }: PokemonDetailProps) => {
+const PokemonDetail = async ({ id }: { id: string }) => {
   const pokemon: Pokemon = await getPokemon(id);
 
   return (
     <div className="container mx-auto p-4">
-      <img
+      <Image
         src={pokemon.sprites.front_default}
         alt={pokemon.name}
-        className="w-40 h-40 mb-4"
+        width={300}
+        height={300}
       />
       <h2 className="text-2xl font-bold mb-4">
         이름: {pokemon.korean_name || pokemon.name}

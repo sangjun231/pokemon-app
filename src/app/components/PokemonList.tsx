@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { getPokemons } from "@/app/services/pokemonService";
 import Link from "next/link";
+import Image from "next/image";
 
 type Pokemon = {
   id: number;
@@ -38,17 +39,18 @@ const PokemonList = () => {
   return (
     <div>
       <h2 className="flex justify-center mb-4">Pokemon List</h2>
-      <ul className="grid grid-cols-6 gap-4 mx-4">
+      <ul className="grid grid-cols-6 gap-4">
         {pokemons.map((pokemon: Pokemon) => (
           <li
             key={pokemon.id}
-            className="flex flex-col items-center p-4 border rounded shadow"
+            className="flex flex-col items-center text-center border rounded shadow"
           >
             <Link href={`/pokemons/${pokemon.id}`}>
-              <img
+              <Image
                 src={pokemon.sprites.front_default}
                 alt={pokemon.name}
-                className="w-20 h-20"
+                width={200}
+                height={200}
               />
               <p>{pokemon.korean_name || pokemon.name}</p>
             </Link>
