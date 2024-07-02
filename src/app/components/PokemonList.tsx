@@ -2,7 +2,8 @@
 
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { fetchPokemons } from "../services/pokemonService";
+import { getPokemons } from "@/app/services/pokemonService";
+import Link from "next/link";
 
 type Pokemon = {
   id: number;
@@ -23,7 +24,7 @@ const PokemonList = () => {
     isError,
   } = useQuery({
     queryKey: ["pokemons"],
-    queryFn: fetchPokemons,
+    queryFn: getPokemons,
   });
 
   if (isLoading) {
@@ -43,12 +44,14 @@ const PokemonList = () => {
             key={pokemon.id}
             className="flex flex-col items-center p-4 border rounded shadow"
           >
-            <img
-              src={pokemon.sprites.front_default}
-              alt={pokemon.name}
-              className="w-20 h-20"
-            />
-            <p>{pokemon.korean_name || pokemon.name}</p>
+            <Link href={`/pokemons/${pokemon.id}`}>
+              <img
+                src={pokemon.sprites.front_default}
+                alt={pokemon.name}
+                className="w-20 h-20"
+              />
+              <p>{pokemon.korean_name || pokemon.name}</p>
+            </Link>
           </li>
         ))}
       </ul>
