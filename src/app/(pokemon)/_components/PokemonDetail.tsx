@@ -1,5 +1,5 @@
 import React from "react";
-import { getPokemon } from "@/app/services/pokemonService";
+import { getPokemon } from "@/services/pokemonService";
 import Link from "next/link";
 import Image from "next/image";
 
