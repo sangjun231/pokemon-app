@@ -29,7 +29,7 @@ const PokemonList = () => {
     isFetchingNextPage,
   } = useInfiniteQuery({
     queryKey: ["pokemons"],
-    queryFn: ({ pageParam = 1 }) => getPokemons(pageParam),
+    queryFn: ({ pageParam = 1 }: number) => getPokemons(pageParam),
     getNextPageParam: (lastPage, allPages) => {
       if (allPages.length * POKEMON_PER_PAGE < TOTAL_POKEMON)
         return allPages.length + 1;
