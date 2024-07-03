@@ -1,15 +1,15 @@
-import PokemonDetail from "@/app/components/PokemonDetail";
+import PokemonDetail from "@/app/(pokemon)/_components/PokemonDetail";
 
-type PokemonDetailPageProps = {
+const PokemonDetailPage = ({
+  params: { id },
+}: {
   params: {
     id: string;
   };
-};
-
-const PokemonDetailPage = ({ params }: PokemonDetailPageProps) => {
+}) => {
   return (
     <div>
-      <PokemonDetail id={params.id} />
+      <PokemonDetail id={id} />
     </div>
   );
 };
