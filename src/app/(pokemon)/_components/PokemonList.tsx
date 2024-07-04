@@ -18,7 +18,7 @@ type Pokemon = {
   abilities: { ability: { name: string; korean_name: string } }[];
   moves: { move: { name: string; korean_name: string } }[];
 };
-
+// 무한스크롤 다시 보자..
 const PokemonList = () => {
   const {
     data,
@@ -38,7 +38,7 @@ const PokemonList = () => {
   });
 
   const observerElem = useRef<HTMLDivElement>(null);
-
+  // 개선해보기
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
