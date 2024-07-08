@@ -3,18 +3,6 @@ import { getPokemon } from "@/services/pokemonService";
 import Link from "next/link";
 import Image from "next/image";
 
-type Type = {
-  type: { name: string; korean_name: string };
-};
-
-type Ability = {
-  ability: { name: string; korean_name: string };
-};
-
-type Move = {
-  move: { name: string; korean_name: string };
-};
-
 type Pokemon = {
   id: number;
   name: string;
@@ -22,9 +10,9 @@ type Pokemon = {
   height: number;
   weight: number;
   sprites: { front_default: string };
-  types: Type[];
-  abilities: Ability[];
-  moves: Move[];
+  types: { type: { name: string; korean_name: string } }[];
+  abilities: { ability: { name: string; korean_name: string } }[];
+  moves: { move: { name: string; korean_name: string } }[];
 };
 
 const PokemonDetail = async ({ id }: { id: string }) => {
@@ -51,22 +39,19 @@ const PokemonDetail = async ({ id }: { id: string }) => {
       <p>
         <strong>타입: </strong>
         {pokemon.types
-          .map((type: Type) => type.type.korean_name || type.type.name)
+          .map((type) => type.type.korean_name || type.type.name)
           .join(", ")}
       </p>
       <p>
         <strong>특성: </strong>
         {pokemon.abilities
-          .map(
-            (ability: Ability) =>
-              ability.ability.korean_name || ability.ability.name
-          )
+          .map((ability) => ability.ability.korean_name || ability.ability.name)
           .join(", ")}
       </p>
       <p>
         <strong>기술: </strong>
         {pokemon.moves
-          .map((move: Move) => move.move.korean_name || move.move.name)
+          .map((move) => move.move.korean_name || move.move.name)
           .join(", ")}
       </p>
       <Link href="/pokemonList" className="text-blue-500 underline">

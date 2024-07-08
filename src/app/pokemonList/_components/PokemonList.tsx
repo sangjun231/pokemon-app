@@ -1,6 +1,6 @@
 "use client";
 
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
 import React, { useRef, useEffect } from "react";
 import { getPokemons } from "@/services/pokemonService";
 import Link from "next/link";
@@ -27,9 +27,16 @@ const PokemonList = () => {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useInfiniteQuery({
+    // 타입 지정 해내기
+  } = useInfiniteQuery<
+    number,
+    Error,
+    InfiniteData<[Pokemon], [Pokemon]>,
+    [Pokemon],
+    undefined
+  >({
     queryKey: ["pokemons"],
-    queryFn: ({ pageParam = 1 }: number) => getPokemons(pageParam),
+    queryFn: ({ pageParam = 1 }) => getPokemons(pageParam),
     getNextPageParam: (lastPage, allPages) => {
       if (allPages.length * POKEMON_PER_PAGE < TOTAL_POKEMON)
         return allPages.length + 1;

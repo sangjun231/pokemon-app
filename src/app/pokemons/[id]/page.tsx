@@ -1,4 +1,4 @@
-import PokemonDetail from "@/app/(pokemon)/_components/PokemonDetail";
+import PokemonDetail from "@/app/pokemons/_components/PokemonDetail";
 
 const PokemonDetailPage = ({
   params: { id },
